@@ -13,17 +13,26 @@ function calculateAll() {
   // updateSubtotal(singleProduct);
   // end of test
   const allProducts = document.querySelectorAll('#cart tbody tr.product');
+  let total = 0; 
   allProducts.forEach(product => {
     updateSubtotal(product);
+    const subtotal = parseFloat(product.querySelector('.subtotal span').textContent);
+    total += subtotal; 
   });
+  document.querySelector('#total-value span').textContent = total.toFixed(2); 
 }
 
 // ITERATION 4
-function removeProduct(event) {
-  const target = event.currentTarget;
-  console.log('The target in remove is:', target);
-  //... your code goes here
-}
+  function removeProduct(event) {
+    const target = event.currentTarget;
+    const product = target.parentNode.parentNode;
+    product.parentNode.removeChild(product);
+    calculateAll();
+  }
+  const removeButtons = document.querySelectorAll('.btn-remove');
+  removeButtons.forEach((button) => {
+    button.addEventListener('click', removeProduct);
+  });
 
 // ITERATION 5
 
