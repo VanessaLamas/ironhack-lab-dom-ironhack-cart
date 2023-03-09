@@ -1,7 +1,9 @@
-// ITERATION 1
 function updateSubtotal(product) {
+  // take the price
   const price = product.querySelector('.price span').textContent;
+  // take the quantity
   const quantity = product.querySelector('.quantity input').value;
+  // calculate subtotal
   const subtotal = price * quantity;
   product.querySelector('.subtotal span').textContent = subtotal;
 }
@@ -13,6 +15,7 @@ function calculateAll() {
   // updateSubtotal(singleProduct);
   // end of test
   const allProducts = document.querySelectorAll('#cart tbody tr.product');
+  // calcular total y subtotales
   let total = 0;
   allProducts.forEach(product => {
     updateSubtotal(product);
@@ -22,7 +25,9 @@ function calculateAll() {
   document.querySelector('#total-value span').textContent = total.toFixed(2);
 }
 
+
 function removeProduct(event) {
+  // eliminate products
   const target = event.currentTarget;
   const product = target.parentNode.parentNode;
   product.parentNode.removeChild(product);
