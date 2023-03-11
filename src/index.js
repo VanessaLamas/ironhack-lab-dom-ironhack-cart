@@ -1,51 +1,63 @@
 function updateSubtotal(product) {
-  // take the price
   const price = product.querySelector('.price span').textContent;
-  // take the quantity
   const quantity = product.querySelector('.quantity input').value;
-  // calculate subtotal
   const subtotal = price * quantity;
   product.querySelector('.subtotal span').textContent = subtotal;
 }
 
 function calculateAll() {
-  // code in the following two lines is added just for testing purposes.
-  // it runs when only iteration 1 is completed. at later point, it can be removed.
-  // const singleProduct = document.querySelector('.product');
-  // updateSubtotal(singleProduct);
-  // end of test
   const allProducts = document.querySelectorAll('#cart tbody tr.product');
-  // calcular total y subtotales
   let total = 0;
   allProducts.forEach(product => {
     updateSubtotal(product);
     const subtotal = parseFloat(product.querySelector('.subtotal span').textContent);
     total += subtotal;
-  });
+    });
   document.querySelector('#total-value span').textContent = total.toFixed(2);
 }
 
-
 function removeProduct(event) {
-  // eliminate products
   const target = event.currentTarget;
   const product = target.parentNode.parentNode;
   product.parentNode.removeChild(product);
   calculateAll();
-}
-const removeButtons = document.querySelectorAll('.btn-remove');
-removeButtons.forEach((button) => {
+  }
+  const removeButtons = document.querySelectorAll('.btn-remove');
+  removeButtons.forEach((button) => {
   button.addEventListener('click', removeProduct);
-});
+  });
+
+/*
+const addItemButton = document.querySelector('#add-item button');
+addItemButton.addEventListener('click', addItem)
+function addItem(event){
+  // <ul id="list">
+  const list = document.querySelector('#list');
+  // input del formulario
+  const input = document.querySelector('#add-item input[type="text"]');
+  // si el input del formulario esta vacio, no hacer nada
+  if (!input.value) {
+    return false;
+  }
+  // crear un elemento HTML del tipo li y le asignamos su contenido
+  // con input.value
+let item = document.createElement ('li');
+  item.textContent = input.value;
+  //añadirlo en lista
+  list.appendChild(item);
+}
+*/
 
 
 function createProduct() {
-  //... your code goes here
+
 }
+
+
+
 
 window.addEventListener('load', () => {
   const calculatePricesBtn = document.getElementById('calculate');
   calculatePricesBtn.addEventListener('click', calculateAll);
-
   //... your code goes here
 });
