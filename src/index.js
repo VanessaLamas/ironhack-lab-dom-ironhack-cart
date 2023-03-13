@@ -67,7 +67,7 @@ window.addEventListener('load', () => {
   const createButton = document.querySelector('#create');
   createButton.addEventListener('click', createProduct);
 });
-
+ 
 /*
   //crear variable que nos permita acceder al boton
 const addItemButton = document.querySelector('#add-item button');
